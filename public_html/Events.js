@@ -10,14 +10,17 @@ document.getElementById('mouse').addEventListener('mouseout', out);
 
 // ********** Add an event listener for the hide button click event **********
 // event listener for hide button click
+document.getElementById("hideButton").addEventListener("click", hideMe);
 
 // ********** Add an event listener for the bulb click event **********
 // event listener for bulb click
+document.getElementById("bulb").addEventListener("click", lightMeUp);
 
 // ********** Add an event listener for the bgColor click event
 // even listener for bgColor click
-
-
+document.getElementById("bgColor").addEventListener("click", colorChange);
+// event listener for hide button 2
+document.getElementById("hideButtonTwo").addEventListener("click", hideMeTwo);
 
 
 
@@ -83,13 +86,28 @@ function out() {
 //-----------------------------
 
 function hideMe() {
-    
+    let isHidden = document.getElementById("textHide").innerHTML;
+    if (isHidden === "Hide this text") {
+        document.getElementById("textHide").innerHTML = "";
+    }
+    else {
+        document.getElementById("textHide").innerHTML = "Hide this text";
+    }
+}
+
+function hideMeTwo() {
+    document.getElementById("hideButtonTwo").hidden = true;
 }
 
 function lightMeUp() {
     var picture = document.getElementById('bulb');
     var picsrc = picture.src;
-//Hint: search the string 'picsrc' for the picture filename    
+//Hint: search the string 'picsrc' for the picture filename   
+    if (picsrc.search("bulbon") >= 0) {
+        picture.src = "bulboff.jfif";
+    } else {
+        picture.src = "bulbon.jfif";
+    }
 }
 
 function colorChange() {
@@ -97,5 +115,22 @@ function colorChange() {
 // Challenge! Make the background color scroll through the colors
 // of the rainbow (RoyGBiv), one color change with each click.
 
-    var color = document.body.style.backgroundColor;
+    let color = document.body.style.backgroundColor;
+    
+    if (color === "red") {
+        color = "orange";
+    } else if (color === "orange") {
+        color = "yellow";
+    } else if (color === "yellow") {
+        color = "green";
+    } else if (color === "green") {
+        color = "blue";
+    } else if (color === "blue") {
+        color = "indigo";
+    } else if (color === "indigo") {
+        color = "violet";
+    } else {
+        color = "red";
+    } 
+    document.body.style.backgroundColor = color;
 }
